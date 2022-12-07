@@ -1,0 +1,41 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
+
+public class RandomPair {
+  public static void main(String[] args) {
+      Scanner sc = new Scanner(System.in);
+      int participants = sc.nextInt();
+      while (participants % 2 == 1) {
+        System.out.println("Count in event numbers");
+        participants = sc.nextInt();
+      }
+
+      ArrayList<String> names = new ArrayList<>();
+      for (int i = 0; i < participants; i++) {
+        names.add(sc.next());
+      }
+
+      System.out.println("Participants are: " + names.toString());
+
+      ArrayList<ArrayList<String>> pairs = new ArrayList<>();
+      while (names.size() > 0) {
+        int n = names.size() - 1;
+        ArrayList<String> pair = new ArrayList<>();
+
+        pair.add(names.get(0));
+        names.remove(0);
+
+        int paired_with = (int)(Math.random() * n);
+        pair.add(names.get(paired_with));
+        pairs.add(pair);
+
+        names.remove(paired_with);
+      }
+
+      for (int i = 0; i < pairs.size(); i++) {
+        System.out.println(pairs.get(i).toString());
+      }
+  }
+}
